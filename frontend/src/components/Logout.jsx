@@ -1,4 +1,5 @@
 import { MdLogout } from "react-icons/md"
+// TODO Implement Logout funcionality
 
 export const Logout = () => {
   return (

@@ -7,7 +7,7 @@ export function formatMemberSince(inputDateString) {
   return formattedDate;
 }
 
-export function formateDate(inputDateString) {
+export function formatDate(inputDateString) {
   const months = [
     "January",
     "February",

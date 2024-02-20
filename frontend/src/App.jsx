@@ -8,6 +8,8 @@ import { LikesPage } from './pages/LikesPage'
 
 import { Sidebar } from "./components/Sidebar"
 
+import { Toaster } from 'react-hot-toast'
+
 export const App = () => {
 
   return (
@@ -21,6 +23,7 @@ export const App = () => {
           <Route path="/explore" element={<ExplorePage />} />
           <Route path="/likes" element={<LikesPage />} />
         </Routes>
+        <Toaster />
       </div>
     </div>
   )

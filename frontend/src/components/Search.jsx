@@ -6,7 +6,7 @@ export const Search = ({ onSearch }) => {
   return (
     <form
       onSubmit={(e) => onSearch(e, username)}
-      className='max-w-xl mx-auto p-2 sm:w-72'
+      className='max-w-xl mx-auto p-2'
     >
       <label
         htmlFor='default-search'

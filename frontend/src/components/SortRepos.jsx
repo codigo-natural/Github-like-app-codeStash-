@@ -1,24 +1,22 @@
-export const SortRepos = () => {
+export const SortRepos = ({ onSort, sortType }) => {
+
+  const BUTTONS = [
+    { type: "recent", text: "Most Recent" },
+    { type: 'stars', text: 'Most Stars' },
+    { type: 'forks', text: 'Most Forks' },
+  ]
   return (
     <div className='mb-2 flex justify-center lg:justify-end'>
-      <button
-        type='button'
-        className={`py-2.5 px-5 me-2 mb-2 text-xs sm:text-sm font-medium focus:outline-none rounded-lg bg-glass`}
-      >
-        Most Recent
-      </button>
-      <button
-        type='button'
-        className={`py-2.5 px-5 me-2 mb-2  text-xs sm:text-sm font-medium focus:outline-none rounded-lg bg-glass`}
-      >
-        Most Stars
-      </button>
-      <button
-        type='button'
-        className={`py-2.5 px-5 me-2 mb-2  text-xs sm:text-sm font-medium focus:outline-none rounded-lg bg-glass`}
-      >
-        Most Forks
-      </button>
+      {BUTTONS.map((button) => (
+        <button
+          key={button.type}
+          type="button"
+          onClick={() => onSort(button.type)}
+          className={`py-2.5 px-5 me-2 text-xs sm:text-sm font-medium focus:outline-none rounded-lg bg-glass ${button.type == sortType ? 'border border-blue-500' : ''}`}
+        >
+          {button.text}
+        </button>
+      ))}
     </div>
   )
 }

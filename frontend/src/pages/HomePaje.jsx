@@ -13,7 +13,7 @@ export const HomePage = () => {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false)
 
-  const [sortType, setSortType] = useState("forks")
+  const [sortType, setSortType] = useState("recent")
 
   const getUserProfileAndRepos = useCallback(async (username = "codigo-natural") => {
 
@@ -22,7 +22,7 @@ export const HomePage = () => {
       // https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
       const userResponse = await fetch(`https://api.github.com/users/${username}`, {
         headers: {
-          Authorization: `token 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`,
+          Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`,
         }
       });
       const userProfile = await userResponse.json();
@@ -30,6 +30,7 @@ export const HomePage = () => {
 
       const reposResponse = await fetch(userProfile.repos_url)
       const repos = await reposResponse.json()
+      repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // descending, recent first
       setRepos(repos)
 
       return { userProfile, repos }
@@ -56,6 +57,7 @@ export const HomePage = () => {
     setUserProfile(userProfile)
     setRepos(repos)
     setLoading(false)
+    setSortType("recent")
   }
 
   const onSort = (sortType) => {

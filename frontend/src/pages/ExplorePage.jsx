@@ -5,7 +5,6 @@ import { Repos } from "../components/Repos"
 import { Spinner } from "../components/Spinner"
 
 export const ExplorePage = () => {
-  // https://api.github.com/search/repositories?q=language:javascript&sort=stars&order=desc=&per_page=10
   const [loading, setLoading] = useState(false)
   const [repos, setRepos] = useState([])
   const [selectedLanguage, setSelectedLanguage] = useState('')
@@ -14,13 +13,10 @@ export const ExplorePage = () => {
     setLoading(true)
     setRepos([])
     try {
-      const response = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc=&per_page=10`, {
-        headers: {
-          Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`,
-        }
-      })
-      const data = await response.json()
-      setRepos(data.items)
+      const response = await fetch("http://localhost:5000/api/explore/repos/" + language);
+      const {repos} = await response.json();
+
+      setRepos(repos)
       setSelectedLanguage(language)
     } catch (error) {
       toast.error(error.message)

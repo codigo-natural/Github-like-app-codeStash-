@@ -18,20 +18,13 @@ export const HomePage = () => {
   const getUserProfileAndRepos = useCallback(async (username = "codigo-natural") => {
 
     try {
-      // 60 request per hour, 5000 request per hour for authenticated requests
-      // https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28
-      const userResponse = await fetch(`https://api.github.com/users/${username}`, {
-        headers: {
-          Authorization: `token ${import.meta.env.VITE_GITHUB_API_KEY}`,
-        }
-      });
-      const userProfile = await userResponse.json();
-      setUserProfile(userProfile)
+      const userResponse = await fetch(`http://localhost:5000/api/users/profile/${username}`) // fetch from our backend
+      const { repos, userProfile } = await userResponse.json()
 
-      const reposResponse = await fetch(userProfile.repos_url)
-      const repos = await reposResponse.json()
       repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // descending, recent first
+      
       setRepos(repos)
+      setUserProfile(userProfile)
 
       return { userProfile, repos }
     } catch (error) {

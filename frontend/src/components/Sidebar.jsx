@@ -7,8 +7,10 @@ import { FaHeart } from "react-icons/fa"
 import { MdEditDocument, MdOutlineExplore } from "react-icons/md"
 import { PiSignInBold } from "react-icons/pi"
 
+import { useAuthContext } from "../context/AuthContext"
+
 export const Sidebar = () => {
-  const authUser = true;
+  const { authUser } = useAuthContext();
   return (
     <aside
       className="flex flex-col items-center min-w-12 sm:w-16 sticky top-0 left-0 h-screen py-8 overflow-y-auto border-r bg-glass"

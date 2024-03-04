@@ -10,10 +10,11 @@ export const useAuthContext = () => {
 
 export const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null)
-  // const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
+    const [loading, setLoading] = useState(true)
+      setLoading(true)
       try {
         const response = await fetch("/api/auth/check", {
           credentials: "include"
@@ -22,15 +23,15 @@ export const AuthContextProvider = ({ children }) => {
         setAuthUser(data.user)
       } catch (error) {
         toast.error(error.message)
+      } finally {
+        setLoading(false)
       }
     }
     checkUserLoggedIn()
   }, [])
 
 
-  return (
-    <AuthContext.Provider value={{ authUser, setAuthUser }}>
-      {children}
-    </AuthContext.Provider>
-  )
+  return <AuthContext.Provider value={{ authUser, setAuthUser, loading }}>
+    {children}
+  </AuthContext.Provider>
 }

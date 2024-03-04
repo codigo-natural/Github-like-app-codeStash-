@@ -11,7 +11,7 @@ export const SignUpPage = () => {
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold md:text-2xl text-center">Create Account</h1>
           <button
-          onClick={handleLoginWithGithub}
+            onClick={handleLoginWithGithub}
             type="button"
             className="text-white bg-[#24292f] hover:bg-[#24292f]/90 focus:ring-4 focus:ring-[#24292f]/50 font-medium rounded-lg flex gap-2 p-2 items-center w-full text-center justify-center"
           >

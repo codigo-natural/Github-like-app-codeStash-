@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 
 import { Logout } from "./Logout"
+import { useAuthContext } from "../context/AuthContext"
 
 import { IoHomeSharp } from "react-icons/io5"
 import { FaHeart } from "react-icons/fa"

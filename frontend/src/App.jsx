@@ -8,6 +8,8 @@ import { LikesPage } from './pages/LikesPage'
 
 import { Sidebar } from "./components/Sidebar"
 
+import { useAuthContext } from './context/AuthContext'
+
 import { Toaster } from 'react-hot-toast'
 import { useAuthContext } from './context/AuthContext'
 

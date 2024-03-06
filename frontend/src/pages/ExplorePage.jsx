@@ -13,12 +13,15 @@ export const ExplorePage = () => {
     setLoading(true)
     setRepos([])
     try {
-      const response = await fetch("http://localhost:5000/api/explore/repos/" + language);
+      const response = await fetch("/api/explore/repos/" + language);
       const {repos} = await response.json();
 
       setRepos(repos)
+      console.log(repos)
+      console.log(response)
       setSelectedLanguage(language)
     } catch (error) {
+      console.log(error)
       toast.error(error.message)
     } finally {
       setLoading(false)

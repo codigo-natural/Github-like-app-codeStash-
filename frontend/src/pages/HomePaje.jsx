@@ -18,7 +18,7 @@ export const HomePage = () => {
   const getUserProfileAndRepos = useCallback(async (username = "codigo-natural") => {
 
     try {
-      const userResponse = await fetch(`http://localhost:5000/api/users/profile/${username}`) // fetch from our backend
+      const userResponse = await fetch(`/api/users/profile/${username}`) // fetch from our backend
       const { repos, userProfile } = await userResponse.json()
 
       repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) // descending, recent first

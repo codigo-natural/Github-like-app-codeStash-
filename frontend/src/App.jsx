@@ -11,7 +11,6 @@ import { Sidebar } from "./components/Sidebar"
 import { useAuthContext } from './context/AuthContext'
 
 import { Toaster } from 'react-hot-toast'
-import { useAuthContext } from './context/AuthContext'
 
 export default function App() {
   const { authUser, loading } = useAuthContext();

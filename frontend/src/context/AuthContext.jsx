@@ -10,10 +10,10 @@ export const useAuthContext = () => {
 
 export const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const checkUserLoggedIn = async () => {
-    const [loading, setLoading] = useState(true)
       setLoading(true)
       try {
         const response = await fetch("/api/auth/check", {
